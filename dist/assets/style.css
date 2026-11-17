@@ -5,3 +5,27 @@
 .essay .essay-subtitle{font-size:18px;line-height:1.55;color:var(--muted);margin:19px 0 38px;max-width:490px}.essay h2{margin-top:45px}.essay strong{font-weight:500}.essay blockquote{font-size:22px;line-height:1.5;padding-left:23px;margin:34px 0;color:var(--ink)}
 .science-figure{margin:32px 0 38px;padding:20px 22px 18px;background:#eff0e8;border:1px solid #dfe2d6;border-radius:3px}.figure-heading{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted)}.figure-heading>span:first-child{font-family:monospace;font-size:10px;letter-spacing:1px;color:#777d6b}.science-figure svg{width:100%;height:auto;display:block;margin:13px 0 0;overflow:visible}.science-figure svg text{fill:#33392e;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px}.science-figure figcaption{border-top:1px solid #d9ddcf;padding-top:13px;font-size:12px;line-height:1.6;color:var(--muted)}.diagram-line{fill:none;stroke:#9aa48d;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.diagram-ink{fill:none;stroke:#4d5942;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.dashed{stroke-dasharray:3 6}.instrument{fill:#f7f7f2;stroke:#7d886e;stroke-width:1.7}.joint{fill:#f7f7f2;stroke:#536248;stroke-width:3}.cycle-path{fill:none;stroke:#777d6b;stroke-width:2;stroke-linecap:round}.loop-node rect{fill:#f7f7f2;stroke:#a9b39c;stroke-width:1.2}.science-figure svg .loop-centre{font-size:15px;fill:#727b66}
 @media(max-width:520px){.science-figure{padding:16px 10px 14px;margin-left:-10px;margin-right:-10px}.figure-heading{padding:0 4px;gap:10px;font-size:11px}.science-figure figcaption{font-size:11px;padding-left:4px;padding-right:4px}.science-figure svg text{font-size:19px}.science-figure svg .loop-centre{font-size:16px}.essay .essay-subtitle{font-size:17px}.essay blockquote{font-size:20px}}
+
+/* Decorative motion keeps labels and reading layout stationary. */
+.idea-particle{animation:idea-flow 7s ease-in-out infinite;animation-delay:var(--delay)}
+.evidence-particle{animation:evidence-flow 3.5s ease-in-out infinite}
+.sample-bubble{animation:bubble-rise 3.5s ease-in-out infinite}
+.evidence-trace{stroke-dasharray:1;animation:trace-evidence 7s ease-in-out infinite}
+.robot-arm{transform-origin:230px 124px;animation:robot-work 6s ease-in-out infinite}
+.robot-gripper{transform-origin:300px 125px;animation:gripper-work 6s ease-in-out infinite}
+.plan-trace{stroke-dasharray:1;animation:plan-work 6s ease-in-out infinite}
+.measurement-trace{stroke-dasharray:1;animation:measure-work 6s ease-in-out infinite}
+.orbit-particle{transform-origin:260px 151px;animation:learning-orbit 10s linear infinite}
+.loop-node rect{animation:node-learn 10s ease-in-out infinite}.loop-node rect:nth-child(2){animation-delay:3.3s}.loop-node rect:nth-child(3){animation-delay:6.6s}
+.science-figure:not(.is-animating) *{animation-play-state:paused!important}
+@keyframes idea-flow{0%,15%{transform:translate(0,0);opacity:.7}65%{opacity:.8}80%,100%{transform:translate(var(--travel-x),var(--travel-y)) scale(.35);opacity:0}}
+@keyframes evidence-flow{0%,20%{transform:translateX(0);opacity:0}30%{opacity:1}80%,100%{transform:translateX(49px);opacity:0}}
+@keyframes bubble-rise{0%,100%{transform:translateY(4px);opacity:.2}50%{transform:translateY(-5px);opacity:.8}}
+@keyframes trace-evidence{0%,18%{stroke-dashoffset:1;opacity:.35}72%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.35}}
+@keyframes robot-work{0%,20%,100%{transform:rotate(-7deg)}45%,65%{transform:rotate(8deg)}80%{transform:rotate(0deg)}}
+@keyframes gripper-work{0%,30%,85%,100%{transform:translateY(0)}48%,62%{transform:translateY(6px)}}
+@keyframes plan-work{0%{stroke-dashoffset:1}25%,100%{stroke-dashoffset:0}}
+@keyframes measure-work{0%,55%{stroke-dashoffset:1}85%,100%{stroke-dashoffset:0}}
+@keyframes learning-orbit{to{transform:rotate(360deg)}}
+@keyframes node-learn{0%,18%,100%{fill:#e6ebdf;stroke:#777d6b}30%,90%{fill:#f7f7f2;stroke:#a9b39c}}
+@media(prefers-reduced-motion:reduce){.science-figure *{animation:none!important}.evidence-particle,.orbit-particle{display:none}.evidence-trace,.plan-trace,.measurement-trace{stroke-dashoffset:0}}
